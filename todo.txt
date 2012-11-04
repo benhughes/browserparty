@@ -1,0 +1,5 @@
+To DO
+- Set unit tests
+- Set up pubsub sytem
+- Set up socket io to do the prototype
+- Create shared models so browser can send info about the current connected browser to the server
