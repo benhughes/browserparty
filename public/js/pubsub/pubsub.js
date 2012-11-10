@@ -4,11 +4,45 @@ define([
 	'log'
 ], function($, log){
 	var logPrefix = "",
-		callbacks = $.Callbacks();
+        list = [],
+		callbacks = jQuery.Callbacks();
 	return {
-		add: callbacks.add,
-		fire: callbacks.fire,
-		remove: callbacks.remove
+		subscribe: function (id, func) {
+            if (typeof func !== "function" || typeof id !== "string"){
+                return;
+            }          
+            log(logPrefix, "subscribing ", func, "to ", id);
+            if(!list || !list[id]){
+                list[id] = {id: id, methods: []};
+            }
+            list[id].methods.push(func);
+            log(list);         
+        },
+		publish: function (id) {
+            var methods,
+                args = Array.prototype.slice.call(arguments);
+
+            args.reverse().pop(); //get rid of the id from the args array
+            args.reverse();
+
+            if(list && list[id]){
+                methods = list[id].methods;
+
+                for(var i=0, len = methods.length; i<len; i++){
+                    methods[i].apply(methods[i], args);
+                }
+                
+            }
+        },
+        remove: function (id, func) {
+
+        },
+        has: function (id, func) {
+            return (typeof list[id] !== "undefined" && ($.inArray(func, list[id].methods) > -1));
+        },
+        clearAll: function () {
+            list = [];
+        }
 	};
 });
 

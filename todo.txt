@@ -1,4 +1,5 @@
 To DO
 - Set up pubsub sytem
+- Move pubsub into its own wxternal repos
 - Set up socket io to do the prototype
 - Create shared models so browser can send info about the current connected browser to the server
