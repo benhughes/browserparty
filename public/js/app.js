@@ -4,8 +4,9 @@ define([
   'underscore',
   'backbone',
   'router', // Request router.js
+  'socketListener/socketListener',
   'log'
-], function($, _, Backbone, Router, log){
+], function($, _, Backbone, Router, socketListener, log){
   var logPrefix = "js/app",
     init = function(){
     log(logPrefix, 'Initialising app.js')
