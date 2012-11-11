@@ -1,8 +1,9 @@
 define([
 	'jquery',
+	'pubsub/pubsub',
 	'pubsub/pubsub'
 
-], function ($, pubsub) {
+], function ($, pubsub, pubsub2) {
 
 	describe('Module :: pubsub', function () {
 		var flag = false;
@@ -209,7 +210,38 @@ define([
 				expect(testFunction.one.argsForCall[0][2]).toBe(passedArgs[2]);
 				expect(testFunction.one.argsForCall[0][3]).toBe(passedArgs[3]);
 
-			})		
+			});		
+			it('should publish functions over two instances of pubsub', function () {
+				var testFunction = {
+						one: function () {
+							return "pubsub test 1";
+						},
+						two: function () {
+							return "pubsub test 2";
+						}
+					},
+					flag1 = false,
+					flag2 = false,
+					pubSubOne,
+					punSubTwo;
+
+
+				spyOn(testFunction, 'one').andCallThrough();
+				spyOn(testFunction, 'two').andCallThrough();
+
+				//pubsub2 is going to register the functions
+				pubsub2.subscribe('publishTest', testFunction.one);
+				pubsub2.subscribe('publishTest', testFunction.two);
+
+				//pubsub is going to call them
+			    pubsub.publish('publishTest');
+
+
+				expect(testFunction.one).toHaveBeenCalled();
+				expect(testFunction.two).toHaveBeenCalled();
+
+
+			});		
 		})
 	});
 
