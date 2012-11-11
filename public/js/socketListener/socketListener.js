@@ -10,7 +10,9 @@ define([
 			var iosocket,
 				messageRecievedPrefix = "recieved",
 				events = {
-					'message' : 'socketio#message'
+					'message' : 'server#message',
+					'browserUpdate' : 'server#browserUpdate',
+					'disconnect' : 'server#disconnect'
 				};
 			return{
 				init: function () {
@@ -26,23 +28,21 @@ define([
 				},
 				setUpListeners: function () {
 					for (var i in events){
-						log(logPrefix, 'Setting up socketio to listen on', i);
-						iosocket.on(i, function (data) {
-							log(logPrefix, 'recieved', i, ":", data);
-							pubSub.publish(events[i], data);
-						});
+						this.setSocketListener(i);
 					};
+				},
+				setSocketListener: function (eventType) {
+						log(logPrefix, 'Setting up socketio to listen on', eventType);
+						iosocket.on(eventType, function (data) {
+							log(logPrefix, 'recieved', eventType, ":", data);
+							pubSub.publish(events[eventType], data);
+						});
 				},
 				run: function (func) {
 					if (this[func]) {
 						this[func]();
 					};
-				},
-				onMessage: function (data) {
-					
-
 				}
-
 			}
 
 		}(),
