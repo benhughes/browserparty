@@ -4,9 +4,9 @@ define([
 	'log'
 ], function($, log){
 	var logPrefix = "",
-        list = [],
-		callbacks = jQuery.Callbacks();
-	return {
+        list = [];
+
+    return {
 		subscribe: function (id, func) {
             //don't perform this function if
             // 1: the function passed is not a function
