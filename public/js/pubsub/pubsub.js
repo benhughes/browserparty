@@ -3,7 +3,7 @@ define([
 	'jquery',     // lib/jquery/jquery-1.8.2.min
 	'log'
 ], function($, log){
-	var logPrefix = "",
+	var logPrefix = "pubsub/pubsub",
         list = [];
 
     return {
@@ -28,15 +28,16 @@ define([
 
             args.reverse().pop(); //get rid of the id from the args array
             args.reverse();
-
+            log(logPrefix, "publishing", id, "with the args", args);
             if(list && list[id]){
-                log(logPrefix, "publishing ", id, "with the args ", args);
+                log(logPrefix, "functions are suscribed to", id, "attempting to call those functions");
                 methods = list[id].methods;
 
                 for(var i=0, len = methods.length; i<len; i++){
                     methods[i].apply(methods[i], args);
-                }
-                
+                }                
+            }else{
+                log(logPrefix, "no functions are suscribed to", id);
             }
         },
         remove: function (id, func) {
