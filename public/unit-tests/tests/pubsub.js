@@ -46,11 +46,20 @@ define([
 
 			});
 			it('should not add anything if a string was not passed as the id', function () {
-				var testFunction = function () {
-					return "testing testing 123";
-				};
-
-
+				var testID = [],
+					testFunction = function () {
+						return "testing testing 123";
+					};
+				pubsub.subscribe(testID, testFunction);
+				expect(pubsub.has(testID, testFunction)).toBe(false);
+			});
+			it('should not add anything if an empty string was passed as the id', function () {
+				var testID = "",
+					testFunction = function () {
+						return "testing testing 123";
+					};
+				pubsub.subscribe(testID, testFunction);
+				expect(pubsub.has(testID, testFunction)).toBe(false);
 			});
 			it('Should add more then one event for a single id', function(){
 				var testFunction = function () {
@@ -64,6 +73,22 @@ define([
 
 				expect(pubsub.has('test', testFunction)).toBe(true);
 				expect(pubsub.has('test', testFunction2)).toBe(true);
+			});
+			it('Should not add the same function to the same id more than once', function(){
+				var testFunction = {
+					one: function () {
+						return "I'm a test";
+					}
+				}
+
+				spyOn(testFunction, 'one').andCallThrough();
+
+				pubsub.subscribe('subscribeTest', testFunction.one);
+				pubsub.subscribe('subscribeTest', testFunction.one);
+
+				pubsub.publish('subscribeTest', "test");
+
+				expect(testFunction.one.callCount).toBe(1);
 			});
 
 		});

@@ -8,7 +8,11 @@ define([
 		callbacks = jQuery.Callbacks();
 	return {
 		subscribe: function (id, func) {
-            if (typeof func !== "function" || typeof id !== "string"){
+            //don't perform this function if
+            // 1: the function passed is not a function
+            // 2: the id passed is not a string or is an empty string
+            // 3: if the function has already assigned o to this ID 
+            if (typeof func !== "function" || (id === '' || typeof id !== "string") || this.has(id, func)){
                 return;
             }          
             log(logPrefix, "subscribing ", func, "to ", id);
@@ -26,6 +30,7 @@ define([
             args.reverse();
 
             if(list && list[id]){
+                log(logPrefix, "publishing ", id, "with the args ", args);
                 methods = list[id].methods;
 
                 for(var i=0, len = methods.length; i<len; i++){
