@@ -28,7 +28,6 @@ define([
     initialize = function(){
       log(logPrefix, "initializing Router");
       var app_router = new AppRouter;
-      log(logPrefix, "initializing Router", app_router);
       app_router.on('dashboard', function(){
         log(logPrefix, "Navigating router to dashboard");
 
