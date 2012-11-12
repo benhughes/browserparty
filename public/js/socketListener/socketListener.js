@@ -8,7 +8,6 @@ define([
 	var logPrefix = "socketListener/socketListener",
 		SocketListener = function () {
 			var iosocket,
-				messageRecievedPrefix = "recieved",
 				events = {
 					'message' : 'server#message',
 					'browserUpdate' : 'server#browserUpdate',
@@ -37,11 +36,6 @@ define([
 							log(logPrefix, 'recieved', eventType, ":", data);
 							pubSub.publish(events[eventType], data);
 						});
-				},
-				run: function (func) {
-					if (this[func]) {
-						this[func]();
-					};
 				}
 			}
 
