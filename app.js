@@ -49,6 +49,10 @@ io.sockets.on('connection', function (socket) {
         console.log('Message Received: ', msg);
         socket.broadcast.emit('message', msg);
     });
+    socket.emit('browserUpdate', {
+      id: socket.id
+
+    })
     socket.on('test', function (msg) {
         console.log('Message Received: ', msg);
         socket.broadcast.emit('message', msg.message);
