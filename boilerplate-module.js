@@ -4,7 +4,7 @@ define([
 	'underscore', // lib/underscore/underscore
 	'backbone',    // lib/backbone/backbone
 	'log'
-], function($, _, Backbone, log){
+], function ($, _, Backbone, log) {
 	var logPrefix = "";
 	// Above we have passed in jQuery, Underscore and Backbone
 	// They will not be accessible in the global scope

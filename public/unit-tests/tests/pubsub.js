@@ -9,23 +9,23 @@ define([
 		var flag = false;
 		beforeEach(function () {
 
-		})
-		afterEach(function(){
+		});
+		afterEach(function () {
 			pubsub.clearAll();
-		})
+		});
 
-		describe('pubsub is an object', function(){
-			it('Should be an object', function(){
+		describe('pubsub is an object', function () {
+			it('Should be an object', function () {
 				expect(typeof pubsub).toBe('object');
 			});
 		});
 
 		describe('pubsub.subscribe', function () {
 
-			it('should add event related to the id', function() {
+			it('should add event related to the id', function () {
 				var testFunction = function () {
 						return "I'm a test";
-					}
+					};
 				pubsub.subscribe('test', testFunction);
 
 				expect(pubsub.has('test', testFunction)).toBe(true);
@@ -62,7 +62,7 @@ define([
 				pubsub.subscribe(testID, testFunction);
 				expect(pubsub.has(testID, testFunction)).toBe(false);
 			});
-			it('Should add more then one event for a single id', function(){
+			it('Should add more then one event for a single id', function () {
 				var testFunction = function () {
 						return "I'm a test";
 					},
@@ -75,12 +75,12 @@ define([
 				expect(pubsub.has('test', testFunction)).toBe(true);
 				expect(pubsub.has('test', testFunction2)).toBe(true);
 			});
-			it('Should not add the same function to the same id more than once', function(){
+			it('Should not add the same function to the same id more than once', function () {
 				var testFunction = {
 					one: function () {
 						return "I'm a test";
 					}
-				}
+				};
 
 				spyOn(testFunction, 'one').andCallThrough();
 
@@ -131,11 +131,9 @@ define([
 
 				expect(pubsub.has('test', testFunction)).toBe(false);
 				expect(pubsub.has('test', testFunction2)).toBe(false);
-			
 			});
-
-		});	
-		describe('pubsub.publish', function(){
+		});
+		describe('pubsub.publish', function () {
 			it('should call functions that have been registered with the passed id', function () {
 				var testFunction = {
 					one: function () {
@@ -147,7 +145,7 @@ define([
 					three: function () {
 						return "I'm a third test";
 					}
-				}
+				};
 
 				spyOn(testFunction, 'one').andCallThrough();
 				spyOn(testFunction, 'two').andCallThrough();
@@ -174,7 +172,7 @@ define([
 					three: function () {
 						return "I'm a third test";
 					}
-				}
+				};
 
 				spyOn(testFunction, 'one').andCallThrough();
 				spyOn(testFunction, 'two').andCallThrough();
@@ -196,7 +194,7 @@ define([
 							return [x, y, z];
 						}
 					},
-					passedArgs = [2, 4, 5, 8]
+					passedArgs = [2, 4, 5, 8];
 
 
 				spyOn(testFunction, 'one').andCallThrough();
@@ -209,8 +207,7 @@ define([
 				expect(testFunction.one.argsForCall[0][1]).toBe(passedArgs[1]);
 				expect(testFunction.one.argsForCall[0][2]).toBe(passedArgs[2]);
 				expect(testFunction.one.argsForCall[0][3]).toBe(passedArgs[3]);
-
-			});		
+			});
 			it('should publish functions over two instances of pubsub', function () {
 				var testFunction = {
 						one: function () {
@@ -234,16 +231,15 @@ define([
 				pubsub2.subscribe('publishTest', testFunction.two);
 
 				//pubsub is going to call them
-			    pubsub.publish('publishTest');
+				pubsub.publish('publishTest');
 
 
 				expect(testFunction.one).toHaveBeenCalled();
 				expect(testFunction.two).toHaveBeenCalled();
 
 
-			});		
-		})
+			});
+		});
 	});
-
 });
 

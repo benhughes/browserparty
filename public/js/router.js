@@ -4,7 +4,7 @@ define([
   'backbone',
   'log',
   'dashboard/views/dashboard',
-], function($, _, Backbone, log, Dashboardview){
+], function ($, _, Backbone, log, Dashboardview) {
   var logPrefix = "js/router",
     AppRouter = Backbone.Router.extend({
       routes: {
@@ -15,7 +15,7 @@ define([
         // Default
         '*actions': 'defaultAction'
       },
-      dashboard: function(){
+      dashboard: function () {
         log(logPrefix, "Navigating router to dashboard");
 
         // Call render on the module we loaded in via the dependency array
@@ -25,10 +25,10 @@ define([
 
       }
     }),
-    initialize = function(){
+    initialize = function () {
       log(logPrefix, "initializing Router");
-      var app_router = new AppRouter;
-      app_router.on('dashboard', function(){
+      var app_router = new AppRouter();
+      app_router.on('dashboard', function () {
         log(logPrefix, "Navigating router to dashboard");
 
         // Call render on the module we loaded in via the dependency array
@@ -37,7 +37,7 @@ define([
         projectListView.render();
       });
 
-      app_router.on('defaultAction', function(actions){
+      app_router.on('defaultAction', function (actions) {
         log(logPrefix, "Navigating router to defualt");
         // We have no matching route, lets just log what the URL was
         console.log('No route:', actions);

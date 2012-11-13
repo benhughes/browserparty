@@ -4,20 +4,20 @@ define([
 	'underscore',
 	'pubsub/pubsub',
 	'log'
-], function(socket, _, pubSub, log){
+], function (socket, _, pubSub, log) {
 	var logPrefix = "socketListener/socketListener",
-		SocketListener = function () {
+		SocketListener = (function () {
 			var iosocket,
 				events = {
 					'message' : 'server#message',
 					'browserUpdate' : 'server#browserUpdate',
 					'disconnect' : 'server#disconnect'
 				};
-			return{
+			return {
 				init: function () {
-					log(logPrefix, 'initialising socketListener')
+					log(logPrefix, 'initialising socketListener');
 					iosocket = io.connect();
-					_.bindAll(this, 'onConnect')
+					_.bindAll(this, 'onConnect');
 					iosocket.on('connect', this.onConnect);
 				},
 				onConnect: function () {
@@ -26,20 +26,23 @@ define([
 					iosocket.emit('message', 'hi there');
 				},
 				setUpListeners: function () {
-					for (var i in events){
-						this.setSocketListener(i);
-					};
+					var i;
+					for (i in events) {
+						if (events.hasOwnProperty(i)) {
+							this.setSocketListener(i);
+						}
+					}
 				},
 				setSocketListener: function (eventType) {
-						log(logPrefix, 'Setting up socketio to listen on', eventType);
-						iosocket.on(eventType, function (data) {
-							log(logPrefix, 'recieved', eventType, ":", data);
-							pubSub.publish(events[eventType], data);
-						});
+					log(logPrefix, 'Setting up socketio to listen on', eventType);
+					iosocket.on(eventType, function (data) {
+						log(logPrefix, 'recieved', eventType, ":", data);
+						pubSub.publish(events[eventType], data);
+					});
 				}
-			}
+			};
 
-		}(),
+		}()),
 		socketListener = SocketListener;
 
 	socketListener.init();

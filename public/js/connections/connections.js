@@ -4,17 +4,15 @@ define([
 	'underscore', // lib/underscore/underscore
 	'backbone',    // lib/backbone/backbone
 	'log'
-], function($, _, Backbone, log){
+], function ($, _, Backbone, log) {
 	var logPrefix = "connection/connections",
-	Connections = function () {
-		var models = {},
-			collections = {},
-			views = {}
+		Connections = function () {
+			var models = {},
+				collections = {},
+				views = {};
 
-		return{
-			
-		}
-	}();
+			return {};
+		}();
 	// Above we have passed in jQuery, Underscore and Backbone
 	// They will not be accessible in the global scope
 	return {};
