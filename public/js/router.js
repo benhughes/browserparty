@@ -1,10 +1,9 @@
 define([
-  'jquery',
   'underscore',
   'backbone',
   'log',
-  'dashboard/views/dashboard',
-], function ($, _, Backbone, log, Dashboardview) {
+  'dashboard/dashboard'
+], function (_, Backbone, log, Dashboard) {
   var logPrefix = "js/router",
     AppRouter = Backbone.Router.extend({
       routes: {
@@ -18,11 +17,7 @@ define([
       dashboard: function () {
         log(logPrefix, "Navigating router to dashboard");
 
-        // Call render on the module we loaded in via the dependency array
-        // 'dashboard/views/dashboard'
-        var projectListView = new Dashboardview();
-        projectListView.render();
-
+        Dashboard.init();
       }
     }),
     initialize = function () {

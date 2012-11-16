@@ -1,0 +1,3 @@
+Stories
+
+Browser connects gets a updated list of every broswer that is connected and sends it's information to the server which then notifys other connections.
