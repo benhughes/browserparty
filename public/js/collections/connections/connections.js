@@ -1,7 +1,7 @@
 define([
 	'underscore',
 	'backbone',
-	'models/connections',
+	'models/connections/connections',
 	'pubsub/pubsub',
 	'log'
 ], function (_, Backbone, ConnectionModel, pubSub, log) {

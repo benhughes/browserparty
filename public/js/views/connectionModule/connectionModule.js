@@ -4,9 +4,9 @@ define([
 	'underscore', // lib/underscore/underscore
 	'backbone',    // lib/backbone/backbone
 	'log',
-	'collections/connections',
+	'collections/connections/connections',
 	'pubsub/pubsub',
-	'text!/templates/connectionList.html'
+	'text!/templates/connectionModule/connectionList.html'
 ], function ($, _, Backbone, log, connectionCollection, pubSub, connectionListTemplate) {
 
 	var logPrefix = "views/connectionModule/connectionModule",
@@ -21,7 +21,7 @@ define([
 			},
 			initialize: function () {
 				this.collection = connectionCollection;
-				this.collection.add({id: 'test'})
+				this.collection.add({id: 'test'});
 				this.setListeners();
 			},
 			setListeners: function () {
@@ -30,7 +30,7 @@ define([
 				//pubSub.subscribe('server#browserUpdate', this.add);
 			},
 			addConnection: function (data) {
-				log(logPrefix, "connection has been added to the connectionCollection", data)
+				log(logPrefix, "connection has been added to the connectionCollection", data);
 				this.render();
 			}
 		});

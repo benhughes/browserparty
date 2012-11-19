@@ -4,7 +4,7 @@ define([
   'log',
   'dashboard/dashboard'
 ], function (_, Backbone, log, Dashboard) {
-  var logPrefix = "js/router",
+  var logPrefix = "router",
     AppRouter = Backbone.Router.extend({
       routes: {
         // Define some URL routes

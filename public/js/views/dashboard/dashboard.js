@@ -4,10 +4,10 @@ define([
   'underscore',
   'backbone',
   'log',
-  'text!/templates/dashboard.html',
-  'collections/connections'
+  'text!/templates/dashboard/dashboard.html',
+  'collections/connections/connections'
 ], function ($, _, Backbone, log, dashboardTemplate) {
-  var logPrefix = "js/views/dashboard",
+  var logPrefix = "views/dashboard/dashboard",
     ProjectListView = Backbone.View.extend({
       el: $('#container'),
       modules: [

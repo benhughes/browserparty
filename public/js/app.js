@@ -5,7 +5,7 @@ define([
   'router', // Request router.js
   'log'
 ], function (_, Backbone, Router, log) {
-  var logPrefix = "js/app",
+  var logPrefix = "app",
     init = function () {
       log(logPrefix, 'Initialising app.js');
       // Pass in our Router module and call it's initialize function
