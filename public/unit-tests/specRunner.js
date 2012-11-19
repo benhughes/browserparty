@@ -43,6 +43,7 @@ require(['underscore', 'jquery', 'jasmine-html'], function (_, $, jasmine) {
   var specs = [];
   specs.push('../unit-tests/tests/pubSub');
   specs.push('../unit-tests/tests/socketListener');
+  specs.push('../unit-tests/tests/log');
   $(function () {
     require(specs, function () {
       jasmineEnv.execute();
