@@ -2,7 +2,7 @@ define([
 	'underscore',
 	'backbone',
 	'models/connections/connections',
-	'pubsub/pubsub',
+	'pubSub/pubSub',
 	'log'
 ], function (_, Backbone, ConnectionModel, pubSub, log) {
 	var logPrefix = "collections/connections",

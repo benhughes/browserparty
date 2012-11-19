@@ -2,7 +2,7 @@ define([
   'jquery', // lib/jquery/jquery-1.8.2.min
   'log'
 ], function ($, log) {
-	var logPrefix = "pubsub/pubsub",
+	var logPrefix = "pubSub/pubSub",
     list = [];
 
   return {

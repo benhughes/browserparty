@@ -5,7 +5,7 @@ define([
 	'backbone',    // lib/backbone/backbone
 	'log',
 	'collections/connections/connections',
-	'pubsub/pubsub',
+	'pubSub/pubSub',
 	'text!/templates/connectionModule/connectionList.html'
 ], function ($, _, Backbone, log, connectionCollection, pubSub, connectionListTemplate) {
 

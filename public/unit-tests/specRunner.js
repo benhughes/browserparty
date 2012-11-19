@@ -29,28 +29,19 @@ require.config({
   }
 });
 
-require(['underscore', 'jquery', 'jasmine-html'], function(_, $, jasmine){
- 
+require(['underscore', 'jquery', 'jasmine-html'], function (_, $, jasmine) {
   var jasmineEnv = jasmine.getEnv();
   jasmineEnv.updateInterval = 1000;
- 
   var htmlReporter = new jasmine.HtmlReporter();
- 
   jasmineEnv.addReporter(htmlReporter);
- 
-  jasmineEnv.specFilter = function(spec) {
+  jasmineEnv.specFilter = function (spec) {
     return htmlReporter.specFilter(spec);
   };
- 
   var specs = [];
- 
-  specs.push('../unit-tests/tests/pubsub');
- 
- 
-  $(function(){
-    require(specs, function(){
+  specs.push('../unit-tests/tests/pubSub');
+  $(function () {
+    require(specs, function () {
       jasmineEnv.execute();
     });
   });
- 
 });
