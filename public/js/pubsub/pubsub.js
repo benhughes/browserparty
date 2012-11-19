@@ -19,16 +19,13 @@ define([
         list[id] = {id: id, methods: []};
       }
       list[id].methods.push(func);
-      log(list);
     },
-		publish: function (id) {
+		publish: function () {
       var methods,
         i,
         len,
-        args = Array.prototype.slice.call(arguments);
-
-      args.reverse().pop(); //get rid of the id from the args array
-      args.reverse();
+        args = Array.prototype.slice.call(arguments),
+        id = args.splice(0, 1); //get rid of the id from the args array
       log(logPrefix, "publishing", id, "with the args", args);
       if (list && list[id]) {
         log(logPrefix, "functions are suscribed to", id, "attempting to call those functions");
