@@ -7,7 +7,7 @@ define([
 	'collections/connections',
 	'pubsub/pubsub',
 	'text!/templates/connectionList.html'
-], function ($, _, Backbone, log, ConnectionCollection, pubSub, connectionListTemplate) {
+], function ($, _, Backbone, log, connectionCollection, pubSub, connectionListTemplate) {
 
 	var logPrefix = "views/connectionModule/connectionModule",
 		ConnectionModuleView = Backbone.View.extend({
@@ -20,15 +20,17 @@ define([
 				return this.$el;
 			},
 			initialize: function () {
-				this.collection = new ConnectionCollection();
+				this.collection = connectionCollection;
+				this.collection.add({id: 'test'})
 				this.setListeners();
 			},
 			setListeners: function () {
-				_.bindAll(this, 'add');
-				pubSub.subscribe('server#browserUpdate', this.add);
+				_.bindAll(this, 'addConnection');
+				this.collection.bind('add', this.addConnection);
+				//pubSub.subscribe('server#browserUpdate', this.add);
 			},
-			add: function (data) {
-				this.collection.add(data);
+			addConnection: function (data) {
+				log(logPrefix, "connection has been added to the connectionCollection", data)
 				this.render();
 			}
 		});
