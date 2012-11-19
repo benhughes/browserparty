@@ -25,6 +25,9 @@ require.config({
     'jasmine-html': {
       deps: ['jasmine'],
       exports: 'jasmine'
+    },
+    socket: {
+      exports: "io"
     }
   }
 });
@@ -39,6 +42,7 @@ require(['underscore', 'jquery', 'jasmine-html'], function (_, $, jasmine) {
   };
   var specs = [];
   specs.push('../unit-tests/tests/pubSub');
+  specs.push('../unit-tests/tests/socketListener');
   $(function () {
     require(specs, function () {
       jasmineEnv.execute();
