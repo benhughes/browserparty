@@ -49,9 +49,8 @@ io.sockets.on('connection', function (socket) {
         console.log('Message Received: ', msg);
         socket.broadcast.emit('message', msg);
     });
-    socket.emit('browserUpdate', {
+    socket.emit('clientUpdate', {
       id: socket.id
-
     })
     socket.on('test', function (msg) {
         console.log('Message Received: ', msg);
@@ -61,10 +60,3 @@ io.sockets.on('connection', function (socket) {
       socket.broadcast.emit('message', info.userAgent);
     })
 });
-
-// socketio.listen(app).on('connection', function (socket) {
-//     socket.on('message', function (msg) {
-//         console.log('Message Received: ', msg);
-//         socket.broadcast.emit('message', msg);
-//     });
-// });
