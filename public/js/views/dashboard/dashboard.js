@@ -4,10 +4,8 @@ define([
   'underscore',
   'backbone',
   'log',
-  // Using the Require.js text! plugin, we are loaded raw text
-  // which will be used as our views primary template
   'text!/templates/dashboard.html',
-  //'views/connectionModule/connectionModule'
+  'collections/connections'
 ], function ($, _, Backbone, log, dashboardTemplate) {
   var logPrefix = "js/views/dashboard",
     ProjectListView = Backbone.View.extend({
@@ -36,9 +34,7 @@ define([
         }, this);
       },
       moduleRender: function (ModuleView) {
-        log('here');
         moduleView = new ModuleView();
-
         this.$el.append(moduleView.render());
 
       }
