@@ -10,8 +10,8 @@ define([
 			var iosocket,
 				events = {
 					'message' : 'server#message',
-					'browserUpdate' : 'server#browserUpdate',
-					'disconnect' : 'server#disconnect'
+					'clientUpdate' : 'server#clientUpdate',
+					'disconnect' : 'server#disconnect',
 				};
 			return {
 				init: function () {
