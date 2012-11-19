@@ -14,24 +14,25 @@ define([
 					'disconnect' : 'server#disconnect',
 				};
 			return {
+				addEvent: function (id, publishId) {
+					events[id] = publishId;
+				},
 				init: function () {
 					log(logPrefix, 'initialising socketListener');
-					iosocket = io.connect();
+					iosocket = socket.connect();
 					_.bindAll(this, 'onConnect');
 					iosocket.on('connect', this.onConnect);
 				},
 				onConnect: function () {
 					log(logPrefix, 'socket.io connected');
 					this.setUpListeners();
+					//todo remove
 					iosocket.emit('message', 'hi there');
 				},
 				setUpListeners: function () {
-					var i;
-					for (i in events) {
-						if (events.hasOwnProperty(i)) {
-							this.setSocketListener(i);
-						}
-					}
+					_.each(events, function (element, index, list) {
+						this.setSocketListener(index);
+					}, this);
 				},
 				setSocketListener: function (eventType) {
 					log(logPrefix, 'Setting up socketio to listen on', eventType);
