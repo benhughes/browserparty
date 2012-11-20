@@ -7,9 +7,8 @@ define([
 ], function (_, Backbone, Router, log) {
   var logPrefix = "app",
     init = function () {
+      var router = new Router();
       log(logPrefix, 'Initialising app.js');
-      // Pass in our Router module and call it's initialize function
-      Router.initialize();
     };
 
   return {
