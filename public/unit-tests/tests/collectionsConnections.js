@@ -19,7 +19,6 @@ define([
 				it('when called should add data to the collection', function () {
 					var testData = {id: "blahblahblahblah12345"};
 					connectionCollection.updateReceived(testData);
-					debugger;
 					expect(connectionCollection.models[0].id).toBe(testData.id);
 				});
 			});
