@@ -5,7 +5,7 @@ define([
 	'backbone',    // lib/backbone/backbone
 	'log'
 ], function ($, _, Backbone, log) {
-	var logPrefix = "";
+	var logPrefix = "----boilerplate change me----";
 	// Above we have passed in jQuery, Underscore and Backbone
 	// They will not be accessible in the global scope
 	return {};

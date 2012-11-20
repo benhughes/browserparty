@@ -5,7 +5,7 @@ define([
 	'pubSub/pubSub',
 	'log'
 ], function (_, Backbone, ConnectionModel, pubSub, log) {
-	var logPrefix = "collections/connections",
+	var logPrefix = "collections/connections/connections",
 		ConnectionCollection = Backbone.Collection.extend({
 			model: ConnectionModel,
 			initialize: function () {
@@ -21,7 +21,6 @@ define([
 				log(logPrefix, 'update recieved', updateData);
 				this.add(updateData);
 			}
-		}),
-		connectionCollection = new ConnectionCollection({});
-	return connectionCollection;
+		});
+	return ConnectionCollection;
 });

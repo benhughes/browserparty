@@ -3,7 +3,8 @@ define([
 	'underscore', // lib/underscore/underscore
 	'log',
 	'socketListener/socketListener',
-	'views/dashboard/dashboard'
+	'views/dashboard/dashboard',
+	'appData/appData'
 ], function (_, log, socketListener, DashboardView) {
 	var logPrefix = "dashboard/dashboard",
 		Dashboard = (function () {

@@ -4,10 +4,10 @@ define([
 	'underscore', // lib/underscore/underscore
 	'backbone',    // lib/backbone/backbone
 	'log',
-	'collections/connections/connections',
+	'appData/appData',
 	'pubSub/pubSub',
 	'text!/templates/connectionModule/connectionList.html'
-], function ($, _, Backbone, log, connectionCollection, pubSub, connectionListTemplate) {
+], function ($, _, Backbone, log, appData, pubSub, connectionListTemplate) {
 
 	var logPrefix = "views/connectionModule/connectionModule",
 		ConnectionModuleView = Backbone.View.extend({
@@ -20,7 +20,7 @@ define([
 				return this.$el;
 			},
 			initialize: function () {
-				this.collection = connectionCollection;
+				this.collection = appData.connections;
 				this.collection.add({id: 'test'});
 				this.setListeners();
 			},
