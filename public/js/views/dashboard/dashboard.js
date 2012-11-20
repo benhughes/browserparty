@@ -8,7 +8,7 @@ define([
   'collections/connections/connections'
 ], function ($, _, Backbone, log, dashboardTemplate) {
   var logPrefix = "views/dashboard/dashboard",
-    ProjectListView = Backbone.View.extend({
+    Dashboard = Backbone.View.extend({
       el: $('#container'),
       modules: [
         {
@@ -40,5 +40,5 @@ define([
       }
     });
   // Our module now returns our view
-  return ProjectListView;
+  return Dashboard;
 });
