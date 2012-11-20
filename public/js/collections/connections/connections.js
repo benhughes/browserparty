@@ -1,13 +1,13 @@
 define([
 	'underscore',
 	'backbone',
-	'models/connections/connections',
+	'models/clientModel/clientModel',
 	'pubSub/pubSub',
 	'log'
-], function (_, Backbone, ConnectionModel, pubSub, log) {
+], function (_, Backbone, ClientModel, pubSub, log) {
 	var logPrefix = "collections/connections/connections",
 		ConnectionCollection = Backbone.Collection.extend({
-			model: ConnectionModel,
+			model: ClientModel,
 			initialize: function () {
 				log(logPrefix, "initalising...");
 				this.setUpListeners();
