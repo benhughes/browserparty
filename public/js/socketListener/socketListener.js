@@ -8,10 +8,12 @@ define([
 	var logPrefix = "socketListener/socketListener",
 		SocketListener = (function () {
 			var iosocket,
+				isConnected = false,
 				events = {
 					'message' : 'server#message',
 					'clientUpdate' : 'server#clientUpdate',
 					'disconnect' : 'server#disconnect',
+					'connectonsUpdate' : 'server#connectonsUpdate'
 				};
 			return {
 				addEvent: function (id, publishId) {
@@ -26,8 +28,8 @@ define([
 				onConnect: function () {
 					log(logPrefix, 'socket.io connected');
 					this.setUpListeners();
-					//todo remove
-					iosocket.emit('message', 'hi there');
+					isConnected = true;
+					pubSub.publish('server#connect');
 				},
 				setUpListeners: function () {
 					_.each(events, function (element, index, list) {
@@ -40,6 +42,9 @@ define([
 						log(logPrefix, 'recieved', eventType, ":", data);
 						pubSub.publish(events[eventType], data);
 					});
+				},
+				socketEmit: function (id, data) {
+					iosocket.emit(id, data);
 				}
 			};
 

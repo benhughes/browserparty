@@ -15,19 +15,17 @@ define([
 				var compiledTemplate = _.template(connectionListTemplate, {connections: this.collection.models});
 
 				log(logPrefix, 'Rendering');
-				this.$el.append(compiledTemplate);
+				this.$el.html(compiledTemplate);
 
 				return this.$el;
 			},
 			initialize: function () {
 				this.collection = appData.connections;
-				this.collection.add({id: 'test'});
 				this.setListeners();
 			},
 			setListeners: function () {
 				_.bindAll(this, 'addConnection');
 				this.collection.bind('add', this.addConnection);
-				//pubSub.subscribe('server#browserUpdate', this.add);
 			},
 			addConnection: function (data) {
 				log(logPrefix, "connection has been added to the connectionCollection", data);

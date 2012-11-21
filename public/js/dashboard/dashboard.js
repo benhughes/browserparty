@@ -4,8 +4,9 @@ define([
 	'log',
 	'socketListener/socketListener',
 	'views/dashboard/dashboard',
-	'appData/appData'
-], function (_, log, socketListener, DashboardView) {
+	'appData/appData',
+	'clientData/clientData'
+], function (_, log, socketListener, DashboardView, appData) {
 	var logPrefix = "dashboard/dashboard",
 		Dashboard = (function () {
 			var dashboardView;

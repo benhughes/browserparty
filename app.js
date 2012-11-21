@@ -51,7 +51,12 @@ io.sockets.on('connection', function (socket) {
     });
     socket.emit('clientUpdate', {
       id: socket.id
-    })
+    });
+    socket.on('clientUpdate', function (data) {
+      console.log('Client Update recieved', data)
+      socket.emit('clientUpdate', data);
+      socket.broadcast.emit('connectonsUpdate', _.extend(data, {id: socket.id}));
+    });
     socket.on('test', function (msg) {
         console.log('Message Received: ', msg);
         socket.broadcast.emit('message', msg.message);

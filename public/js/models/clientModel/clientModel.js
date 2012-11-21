@@ -5,7 +5,6 @@ define([
 ], function (_, Backbone, log) {
 	var ConnectionModel = Backbone.Model.extend({
 		defaults: {
-			id: '',
 			type: 'unknown',
 			userAgent: ''
 		}

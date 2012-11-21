@@ -15,11 +15,11 @@ define([
 			setUpListeners: function () {
 				log(logPrefix, "setting up listeners");
 				_.bindAll(this, 'updateReceived');
-				pubSub.subscribe('server#browserUpdate', this.updateReceived);
+				pubSub.subscribe('server#connectonsUpdate', this.updateReceived);
 			},
 			updateReceived: function (updateData) {
 				log(logPrefix, 'update recieved', updateData);
-				this.add(updateData);
+				log(logPrefix, this.add([updateData]));
 			}
 		});
 	return ConnectionCollection;
