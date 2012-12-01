@@ -15,7 +15,6 @@ var express = require('express'),
     io = require('socket.io').listen(server),
     log = require('../public/js/log/log'),
     pubSub = require('../public/js/pubSub/pubSub'),
-    socketListener = require('../public/js/socketListener/socketListener'),
     logPrefix = 'app.js';
 
 log(logPrefix, "App started");
