@@ -1,16 +1,52 @@
 
-var socketListener = function () {
-	var io = require('socket.io').listen(server),
-	    _ = require('underscore')._;
+var socketListener = (function () {
+	var io = require('socket.io'),
+		_ = require('underscore')._,
+		log = require('../public/js/log/log'),
+		pubSub = require('../public/js/pubSub/pubSub'),
+		logPrefix = 'socketListener',
+		events = require('../shared/sharedMessages.json');
+
 
 
 	return {
-		initialise: function () {
+		initialise: function (server) {
+			if (!server || !_.isObject(server)) {
+				log(logPrefix, 'server is not an object it is ' + typeof server + ' throwing error');
+				throw new Error('Passed Server is not an object');
+			}
+			log(logPrefix, 'initialising socketlistener');
+			log(logPrefix, 'registeredevents are ', events);
 
+			io = io.listen(server);
+			_.bindAll(this, 'onConnect');
+			io.sockets.on('connection', this.onConnect);
+		},
+		onConnect: function (socket) {
+			log(logPrefix, 'Socket Connected', socket.id);
+			this.setUpListeners(socket);
+			pubSub.publish('server#connect');
+
+		},
+		setUpListeners: function (socket) {
+			_.each(events, function (element, index, list) {
+				this.setSocketListener(index, socket);
+			}, this);
+		},
+		setSocketListener: function (eventType, socket) {
+			log(logPrefix, 'Setting up socketio to listen on', eventType);
+			socket.on(eventType, function (data) {
+				log(logPrefix, 'recieved', eventType, ":", data);
+				pubSub.publish(events[eventType], data);
+			});
+		},
+		socketEmit: function (id, data) {
+			socket.broadcast.emit(id, data);
 		}
-	}
 
-}
+	};
+
+}());
 
 module.exports = socketListener;
 

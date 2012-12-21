@@ -12,10 +12,11 @@ var express = require('express'),
     backbone = require('backbone'),
     app = express(),
     server = http.createServer(app),
-    io = require('socket.io').listen(server),
     log = require('../public/js/log/log'),
     pubSub = require('../public/js/pubSub/pubSub'),
-    logPrefix = 'app.js';
+    logPrefix = 'app.js',
+    socketListener = require('./socketListener'),
+    appData = require('./appData');
 
 log(logPrefix, "App started");
 
@@ -46,26 +47,6 @@ server.listen(app.get('port'), function () {
 });
 
 app.listen();
-io.sockets.on('connection', function (socket) {
-    console.log('A socket connected!', socket.id);
-    socket.on('message', function (msg) {
-        console.log('Message Received: ', msg);
-        socket.broadcast.emit('message', msg);
-    });
-    socket.emit('clientUpdate', {
-        id: socket.id
-    });
-    socket.on('clientUpdate', function (data) {
-        console.log('Client Update recieved', data);
-        socket.emit('clientUpdate', data);
-        socket.broadcast.emit('connectonsUpdate', _.extend(data, {id: socket.id}));
-    });
-    socket.on('test', function (msg) {
-        console.log('Message Received: ', msg);
-        socket.broadcast.emit('message', msg.message);
-    });
-    socket.on('browserInfo', function (info) {
-        socket.broadcast.emit('message', info.userAgent);
-    });
-});
+
+socketListener.initialise(server);
 pubSub.publish('appStarted');
