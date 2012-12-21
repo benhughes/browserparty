@@ -1,15 +1,21 @@
-define([
-	'underscore', // lib/underscore/underscore
-	'backbone',    // lib/backbone/backbone
-	'log'
-], function (_, Backbone, log) {
-	var ConnectionModel = Backbone.Model.extend({
-		defaults: {
-			type: 'unknown',
-			userAgent: ''
-		}
-	});	// Above we have passed in jQuery, Underscore and Backbone
-	// They will not be accessible in the global scope
-	return ConnectionModel;
-	// What we return here will be used by other modules
-});
+(function () {
+    'use strict';
+
+    var moduleName = function (_, Backbone, log) {
+        var logPrefix = "model/clientModel",
+			ConnectionModel = Backbone.Model.extend({
+				defaults: {
+					type: 'unknown',
+					userAgent: ''
+				}
+			});
+        return ConnectionModel;
+    };
+    //sets up for require to be able to use file in browser and commonjs to use it on serevr
+    if (typeof define === "function" && define.amd) {
+        define(['underscore', 'backbone', 'log'], moduleName);
+    } else if (module && typeof module.exports !== 'undefined') {
+        module.exports = moduleName(require('underscore')._, require('backbone'), require('../../log/log'));
+    }
+
+}());
