@@ -41,7 +41,9 @@ var socketListener = (function () {
 			});
 		},
 		socketEmit: function (id, data) {
-			socket.broadcast.emit(id, data);
+			log(logPrefix, 'sending ', data, 'to connections with id ', id);
+			console.log(io);
+			io.sockets.emit(id, data);
 		}
 
 	};
