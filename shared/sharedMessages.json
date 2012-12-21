@@ -1,0 +1,6 @@
+{
+	"message" : "server#message",
+	"clientUpdate" : "server#clientUpdate",
+	"disconnect" : "server#disconnect",
+	"connectonsUpdate" : "server#connectonsUpdate"
+}
