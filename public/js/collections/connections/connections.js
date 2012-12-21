@@ -16,18 +16,18 @@
 				},
 				updateReceived: function (updateData) {
 					log(logPrefix, 'update recieved', updateData);
-					log(logPrefix, this.add([updateData]));
+					log(logPrefix, this.reset(updateData, {silent: false}));
 				}
 			});
 
 
-        return ConnectionCollection;
-    };
-    //sets up for require to be able to use file in browser and commonjs to use it on serevr
-    if (typeof define === "function" && define.amd) {
-        define(['underscore', 'backbone', 'log', 'pubSub/pubSub', 'models/clientModel/clientModel'], Connections);
-    } else if (module && typeof module.exports !== 'undefined') {
-        module.exports = Connections(require('underscore')._, require('backbone'), require('../../log/log'), require('../../pubSub/pubSub'), require('../../models/clientModel/clientModel'));
-    }
+		return ConnectionCollection;
+	};
+	//sets up for require to be able to use file in browser and commonjs to use it on serevr
+	if (typeof define === "function" && define.amd) {
+		define(['underscore', 'backbone', 'log', 'pubSub/pubSub', 'models/clientModel/clientModel'], Connections);
+	} else if (module && typeof module.exports !== 'undefined') {
+		module.exports = Connections(require('underscore')._, require('backbone'), require('../../log/log'), require('../../pubSub/pubSub'), require('../../models/clientModel/clientModel'));
+	}
 
 }());
