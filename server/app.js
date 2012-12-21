@@ -16,7 +16,8 @@ var express = require('express'),
     pubSub = require('../public/js/pubSub/pubSub'),
     logPrefix = 'app.js',
     socketListener = require('./socketListener'),
-    appData = require('./appData');
+    appData = require('./appData'),
+    connectionMessenger= require('./connectionMessenger');
 
 log(logPrefix, "App started");
 
