@@ -44,6 +44,7 @@ define([
 					});
 				},
 				socketEmit: function (id, data) {
+					log(logPrefix, 'Sending message to server with id ', id, data);
 					iosocket.emit(id, data);
 				}
 			};
