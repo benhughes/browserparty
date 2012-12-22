@@ -4,6 +4,7 @@ var socketListener = (function () {
 		_ = require('underscore')._,
 		log = require('../public/js/log/log'),
 		pubSub = require('../public/js/pubSub/pubSub'),
+        SingleSocketListener = require('./singleSocketListener'),
 		logPrefix = 'socketListener',
 		events = require('../shared/sharedMessages.json');
 
@@ -16,7 +17,7 @@ var socketListener = (function () {
 				throw new Error('Passed Server is not an object');
 			}
 			log(logPrefix, 'initialising socketlistener');
-			log(logPrefix, 'registeredevents are ', events);
+			log(logPrefix, 'registered events are ', events);
 
 			io = io.listen(server);
 			_.bindAll(this, 'onConnect');
@@ -24,8 +25,12 @@ var socketListener = (function () {
 		},
 		onConnect: function (socket) {
 			log(logPrefix, 'Socket Connected', socket.id);
-			this.setUpListeners(socket);
-			pubSub.publish('server#connect');
+            var singleSocketListener = new SingleSocketListener();
+            //initialise single socket listerner with passed socket
+            singleSocketListener.initialise(socket);
+
+			//this.setUpListeners(socket);
+			//pubSub.publish('server#connect');
 
 		},
 		setUpListeners: function (socket) {
@@ -42,7 +47,6 @@ var socketListener = (function () {
 		},
 		socketEmit: function (id, data) {
 			log(logPrefix, 'sending ', data, 'to connections with id ', id);
-			console.log(io);
 			io.sockets.emit(id, data);
 		}
 
