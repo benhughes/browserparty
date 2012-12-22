@@ -8,6 +8,8 @@ lib-cov
 *.gz
 *.ds_store
 
+.idea/
+
 pids
 logs
 results
