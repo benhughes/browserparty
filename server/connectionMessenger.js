@@ -17,20 +17,31 @@ var connectionMessenger = (function () {
 		},
 		setUpListeners: function () {
 			log(logPrefix, 'setting up listeners');
-			_.bindAll(this, 'newConnection', 'collectionAdded');
-			pubSub.subscribe('server#clientUpdate', this.newConnection);
-			appData.connections.bind('add', this.collectionAdded);
+			_.bindAll(this, 'newConnection', 'collectionAdded', 'handleDisconnection');
+            pubSub.subscribe('server#clientUpdate', this.newConnection);
+            pubSub.subscribe('server#disconnect', this.handleDisconnection);
+            appData.connections.bind('add', this.collectionAdded);
 
 		},
-		newConnection: function (data) {
+		newConnection: function (data, socket) {
 			log(logPrefix, 'recieving new connection', data);
+            data.id = socket.id;
 			appData.connections.add(data);
 		},
 		collectionAdded: function () {
 			log(logPrefix, 'new connection added sending data to browsers');
-			socketListener.socketEmit('connectonsUpdate', appData.connections.toJSON());
+            this.sendCurrentConnections();
+		},
+        sendCurrentConnections: function () {
+            log(logPrefix, 'sending current connections data to all connections');
+            socketListener.socketEmit('connectonsUpdate', appData.connections.toJSON());
+        },
+        handleDisconnection: function (data, socket) {
+            log(logPrefix, 'handling socket disconnection for', socket.id);
+            appData.connections.remove(socket.id);
+            this.sendCurrentConnections();
 
-		}
+        }
 	};
 }());
 
