@@ -21,11 +21,6 @@ var SingleSocketListener = function () {
             this.setUpListeners();
         },
         setUpListeners: function () {
-            //set up disconnect listener
-            log(logPrefix, "setting up disconnect server for ", socket.id);
-            _.bindAll(this, 'socketDisconnected');
-            socket.on('disconnect', this.socketDisconnected);
-
             //setting up listeners for all shared messages
             _.each(events, function (element, index, list) {
                 this.setSocketListener(index);
@@ -37,11 +32,6 @@ var SingleSocketListener = function () {
                 log(logPrefix, 'recieved', eventType, ":", data);
                 pubSub.publish(events[eventType], data, socket);
             });
-        },
-        socketDisconnected: function (data) {
-            log(logPrefix, 'Socket', socket.id, 'disconnection detected');
-            pubSub.publish('server#disconnect', data, socket);
-
         }
     };
 
