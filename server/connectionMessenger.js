@@ -7,7 +7,7 @@ var connectionMessenger = (function () {
 		appData = require('./appData'),
 		_ = require('underscore')._,
 		socketListener = require('./socketListener'),
-		logPrefix = 'connectionMessenger';
+        logPrefix = 'connectionMessenger';
 
 	return {
 		initialise: function () {

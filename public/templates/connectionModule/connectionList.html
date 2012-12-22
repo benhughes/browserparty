@@ -1,7 +1,10 @@
 <h2>Connected Items</h2>
 <ul>
 	<% _.each(connections, function(connection){ %>
-   		<li><strong>ID:</strong> <%= connection.get("id") %> <br/>
-               <strong>User Agent:</strong> <%= connection.get("userAgent") %></a></li>
+   		<li>
+               <strong>ID:</strong> <%= connection.get("id") %> <br/>
+               <strong>Type:</strong> <%= connection.get("type") %> <br/>
+               <strong>User Agent:</strong> <%= connection.get("userAgent") %>
+        </li>
 	<% }); %>
 </ul>
