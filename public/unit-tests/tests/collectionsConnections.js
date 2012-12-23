@@ -11,8 +11,8 @@ define([
 
 		describe('Module :: collections/connections', function () {
 			describe('.setUpListeners', function () {
-				it('should suscribe updateReceived to pubSub id server#connectonsUpdate', function () {
-					expect(pubSub.has('server#connectonsUpdate', connectionCollection.updateReceived)).toBe(true);
+				it('should subscribe updateReceived to pubSub id server#connectionsUpdate', function () {
+					expect(pubSub.has('server#connectionsUpdate', connectionCollection.updateReceived)).toBe(true);
 				});
 			});
 			describe('.updateReceived', function () {

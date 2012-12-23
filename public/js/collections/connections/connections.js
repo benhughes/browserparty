@@ -12,7 +12,7 @@
 				setUpListeners: function () {
 					log(logPrefix, "setting up listeners");
 					_.bindAll(this, 'updateReceived');
-					pubSub.subscribe('server#connectonsUpdate', this.updateReceived);
+					pubSub.subscribe('server#connectionsUpdate', this.updateReceived);
 				},
 				updateReceived: function (updateData) {
 					log(logPrefix, 'update recieved', updateData);

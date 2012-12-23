@@ -13,7 +13,7 @@ define([
 					'message' : 'server#message',
 					'clientUpdate' : 'server#clientUpdate',
 					'disconnect' : 'server#disconnect',
-					'connectonsUpdate' : 'server#connectonsUpdate'
+					'connectionsUpdate' : 'server#connectionsUpdate'
 				};
 			return {
 				addEvent: function (id, publishId) {
