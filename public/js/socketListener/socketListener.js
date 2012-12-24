@@ -13,6 +13,7 @@ define([
 					'message' : 'server#message',
 					'clientUpdate' : 'server#clientUpdate',
 					'disconnect' : 'server#disconnect',
+                    'eventsUpdate' : 'server#eventsUpdate',
 					'connectionsUpdate' : 'server#connectionsUpdate'
 				};
 			return {

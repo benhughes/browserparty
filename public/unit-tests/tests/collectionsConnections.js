@@ -6,7 +6,6 @@ define([
 		var connectionCollection;
 		beforeEach(function () {
 			connectionCollection = new ConnectionCollection();
-
 		});
 
 		describe('Module :: collections/connections', function () {

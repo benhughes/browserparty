@@ -2,6 +2,6 @@
 	"message" : "server#message",
 	"clientUpdate" : "server#clientUpdate",
 	"disconnect" : "server#disconnect",
-	"connectionsUpdate" : "server#connectonsUpdate",
+	"connectionsUpdate" : "server#connectionsUpdate",
     "eventsUpdate" : "server#eventsUpdate"
 }

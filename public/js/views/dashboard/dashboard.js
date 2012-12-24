@@ -11,10 +11,14 @@ define([
     Dashboard = Backbone.View.extend({
       el: $('#container'),
       modules: [
-        {
-          id: "connections",
-          viewLoc: "views/connectionModule/connectionModule"
-        }
+          {
+              id: "connections",
+              viewLoc: "views/connectionModule/connectionModule"
+          },
+          {
+              id: "events",
+              viewLoc: "views/eventsModule/eventsModule"
+          }
       ],
       render: function () {
         var data = {},

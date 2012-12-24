@@ -1,0 +1,9 @@
+<h2>Events</h2>
+<ul>
+    <% _.each(events, function(event){ %>
+    <li>
+        <strong>Type:</strong> <%= event.get("type") %> <br/>
+        <strong>Text:</strong> <%= event.get("text") %>
+    </li>
+    <% }); %>
+</ul>

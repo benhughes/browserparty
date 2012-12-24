@@ -34,7 +34,7 @@ var connectionMessenger = (function () {
 		},
         sendCurrentConnections: function () {
             log(logPrefix, 'sending current connections data to all connections');
-            socketListener.socketEmit('connectonsUpdate', appData.connections.toJSON());
+            socketListener.socketEmit('connectionsUpdate', appData.connections.toJSON());
         },
         handleDisconnection: function (data, socket) {
             log(logPrefix, 'handling socket disconnection for', socket.id);
