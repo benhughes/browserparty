@@ -5,12 +5,13 @@ define([
 	'backbone',    // lib/backbone/backbone
 	'log',
 	'appData/appData',
-	'pubSub/pubSub',
+	'pubSub',
 	'text!/templates/connectionModule/connectionList.html'
 ], function ($, _, Backbone, log, appData, pubSub, connectionListTemplate) {
 
 	var logPrefix = "views/connectionModule/connectionModule",
 		ConnectionModuleView = Backbone.View.extend({
+			className: 'connectionsModule module',
 			render: function () {
 				var compiledTemplate = _.template(connectionListTemplate, {connections: this.collection.models});
 
@@ -25,7 +26,7 @@ define([
 			},
 			setListeners: function () {
 				_.bindAll(this, 'addConnection');
-				this.collection.bind('add', this.addConnection);
+				this.collection.bind('reset', this.addConnection);
 			},
 			addConnection: function (data) {
 				log(logPrefix, "connection has been added to the connectionCollection", data);
