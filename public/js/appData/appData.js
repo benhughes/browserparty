@@ -1,9 +1,9 @@
 define([
 	// These are path alias that we configured in our bootstrap
 	'underscore', // lib/underscore/underscore
-    'collections/connections/connections',
-    'collections/events/events',
-	'models/clientModel/clientModel',
+    '/shared/collections/connections/connections.js',
+    '/shared/collections/events/events.js',
+	'/shared/models/clientModel/clientModel.js',
 	'log'
 ], function (_, ConnectionCollection, EventCollection, ClientModel, log) {
 	var logPrefix = "appData",

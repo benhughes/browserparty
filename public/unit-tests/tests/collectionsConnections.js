@@ -1,6 +1,6 @@
 define([
-	'collections/connections/connections',
-	'pubSub/pubSub'
+	'/shared/collections/connections/connections.js',
+	'pubSub'
 ],
 	function (ConnectionCollection, pubSub) {
 		var connectionCollection;

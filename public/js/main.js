@@ -7,7 +7,8 @@
 			'backbone': 'lib/backbone/backbone',
 			'socket': '../socket.io/socket.io',
 			'text': 'lib/require/plugins/text',
-			'log': 'log/log'
+			'log': '/shared/log/log',
+			'pubSub': '/shared/pubSub/pubSub'
 		},
 		shim: {
 			underscore: {
@@ -23,11 +24,11 @@
 		}
 	});
 
-	require([
-		'app'
-	],
-	function (app) {
-		app.init();
-	});
+	require(
+		['app'],
+		function (app) {
+			app.init();
+		}
+	);
 
-})();
+}());

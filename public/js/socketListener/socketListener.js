@@ -2,7 +2,7 @@ define([
 	// These are path alias that we configured in our bootstrap
 	'socket',
 	'underscore',
-	'pubSub/pubSub',
+	'pubSub',
 	'log'
 ], function (socket, _, pubSub, log) {
 	var logPrefix = "socketListener/socketListener",

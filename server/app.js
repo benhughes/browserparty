@@ -12,8 +12,8 @@ var express = require('express'),
     backbone = require('backbone'),
     app = express(),
     server = http.createServer(app),
-    log = require('../public/js/log/log'),
-    pubSub = require('../public/js/pubSub/pubSub'),
+    log = require('../shared/log/log'),
+    pubSub = require('../shared/pubSub/pubSub'),
     logPrefix = 'app.js',
     socketListener = require('./socketListener'),
     appData = require('./appData'),
@@ -35,6 +35,7 @@ app.configure(function () {
     app.use(app.router);
     app.use(require('stylus').middleware(__dirname + '/../public'));
     app.use(express.static(path.join(__dirname, '/../public')));
+    app.use('/shared', express.static(path.join(__dirname, '/../shared')));
 });
 
 app.configure('development', function () {

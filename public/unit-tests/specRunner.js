@@ -6,7 +6,8 @@ require.config({
     'backbone': 'lib/backbone/backbone',
     'socket': '../socket.io/socket.io',
     'text': 'lib/require/plugins/text',
-    'log': 'log/log',
+    'log': '/shared/log/log',
+    'pubSub': '/shared/pubSub/pubSub',
     //Jasmine
     'jasmine': '../unit-tests/jasmine-1.2.0/jasmine',
     'jasmine-html': '../unit-tests/jasmine-1.2.0/jasmine-html'

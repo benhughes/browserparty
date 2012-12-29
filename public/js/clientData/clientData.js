@@ -5,7 +5,7 @@ define([
 	'backbone',    // lib/backbone/backbone
 	'appData/appData',
 	'log',
-	'pubSub/pubSub',
+	'pubSub',
 	'socketListener/socketListener'
 ], function ($, _, Backbone, appData, log, pubSub, socketListener) {
 	var logPrefix = "clientData/clientData",

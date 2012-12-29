@@ -1,7 +1,7 @@
 var appData = (function () {
-	var ConnectionCollection = require('../public/js/collections/connections/connections'),
-		EventsCollection = require('../public/js/collections/events/events'),
-        log = require('../public/js/log/log'),
+	var ConnectionCollection = require('../shared/collections/connections/connections'),
+		EventsCollection = require('../shared/collections/events/events'),
+        log = require('../shared/log/log'),
 		connectionCollection = new ConnectionCollection,
         eventsCollection = new EventsCollection(),
 		logPrefix = "appData";

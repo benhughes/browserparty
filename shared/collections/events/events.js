@@ -25,9 +25,9 @@
     };
     //sets up for require to be able to use file in browser and commonjs to use it on serevr
     if (typeof define === "function" && define.amd) {
-        define(['underscore', 'backbone', 'log', 'pubSub/pubSub', 'models/event/event'], events);
+        define(['underscore', 'backbone', 'log', 'pubSub', '/shared/models/event/event.js'], events);
     } else if (module && typeof module.exports !== 'undefined') {
-        module.exports = events(require('underscore')._, require('backbone'), require('../../log/log'), require('../../pubSub/pubSub'), require('../../models/event/event'));
+        module.exports = events(require('underscore')._, require('backbone'), require('../../log/log'), require('../../pubSub/pubSub'), require('../..//models/event/event'));
     }
 
 }());

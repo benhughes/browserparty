@@ -5,7 +5,7 @@ define([
 	'backbone',
 	'log',
 	'text!/templates/dashboard/dashboard.html',
-	'collections/connections/connections'
+	'/shared/collections/connections/connections.js'
 ], function ($, _, Backbone, log, dashboardTemplate) {
 	var logPrefix = "views/dashboard/dashboard",
 		Dashboard = Backbone.View.extend({

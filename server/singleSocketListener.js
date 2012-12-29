@@ -1,8 +1,8 @@
 
 var SingleSocketListener = function () {
     var _ = require('underscore')._,
-        log = require('../public/js/log/log'),
-        pubSub = require('../public/js/pubSub/pubSub'),
+        log = require('../shared/log/log'),
+        pubSub = require('../shared/pubSub/pubSub'),
         logPrefix = 'singleSocketListener',
         socket,
         events = require('../shared/sharedMessages.json');

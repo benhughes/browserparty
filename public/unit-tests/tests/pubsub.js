@@ -1,7 +1,7 @@
 define([
 	'jquery',
-	'pubSub/pubSub',
-	'pubSub/pubSub'
+	'pubSub',
+	'pubSub'
 
 ], function ($, pubSub, pubSub2) {
 

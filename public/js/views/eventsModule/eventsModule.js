@@ -5,7 +5,7 @@ define([
 	'backbone',    // lib/backbone/backbone
 	'log',
 	'appData/appData',
-	'pubSub/pubSub',
+	'pubSub',
 	'text!/templates/eventsModule/eventsModule.html'
 ], function ($, _, Backbone, log, appData, pubSub, eventsViewer) {
 

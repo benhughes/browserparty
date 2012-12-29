@@ -2,8 +2,8 @@
 
 var connectionMessenger = (function () {
 	'use strict';
-	var pubSub = require('../public/js/pubSub/pubSub'),
-		log = require('../public/js/log/log'),
+	var pubSub = require('../shared/pubSub/pubSub'),
+		log = require('../shared/log/log'),
 		appData = require('./appData'),
 		_ = require('underscore')._,
 		socketListener = require('./socketListener'),
